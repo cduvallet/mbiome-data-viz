@@ -4,10 +4,13 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>PhD Chat: Tips, tricks, and philosophies for computational work</title>
+		<title>Looking at your data: raw data, data exploration, and visualization</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/night.css">
+
+        <!-- added by me, gives footer and twitter icons -->
+        <link rel="stylesheet" href="assets/css/science.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<!--<link rel="stylesheet" href="lib/css/zenburn.css">-->
@@ -24,9 +27,18 @@
 	</head>
 	<body>
 		<div class="reveal">
+                <div id="hidden" style="display:none;">
+                    <div class="footer">
+                        <!-- these icons are from font-awesome imported in science.css -->
+                    <a href="hhttps://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-bullhorn"></i>CC BY-NC-SA 4.0</a>
+                    <a href="https://cduvallet.github.io/"><i class="fa fa-globe"></i>cduvallet.github.io</a>
+        			<!-- <a href="https://github.com/cduvallet"><i class="fa fa-github"></i>cduvallet</a> -->
+        			<a href="https://twitter.com/cduvallet"><i class="fa fa-twitter"></i>@cduvallet</a>
+        			<a href="https://cduvallet.github.io/"><i class="fa fa-envelope-square"></i>cduvallet@gmail.com</a>
+            </div></div>
 
             <div class="slides">
-                <section data-markdown="phdchat.md"
+                <section data-markdown="data-viz-talk.md"
                 id="markdown"
                 data-separator-vertical="^\n----\n"
                 data-separator-notes="^Note:"></section>
@@ -62,7 +74,10 @@
 					{ src: 'plugin/notes/notes.js', async: true },
 					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
                     { src: 'plugin/math/math.js', async: true }
-                ]
+                ],
+                // Flags whether to include the current fragment in the URL,
+                // so that reloading brings you to the same fragment position
+                fragmentInURL: true
 			});
             emojione.imageType = 'svg';
             emojione.ascii = true;
@@ -73,19 +88,20 @@
             } );
 
             // I think all this stuff is to make the footer show up
-			// var footer = document.getElementsByClassName("footer")[0];
-    		// if ( window.location.search.match( /print-pdf/gi ) ) {
-        	// 	Reveal.addEventListener( 'ready', function( event ) {
-			// 		var backgrounds = document.querySelectorAll(".slide-background");
-            // 		Array.from(backgrounds).forEach(
-			// 			function(el) {el.innerHTML += footer.outerHTML;});
-			// 		var sections = document.querySelectorAll("section");
-			// 		Array.from(sections).forEach(
-			// 			function(el) {el.innerHTML = emojione.toImage(el.innerHTML);});
-        	// 	});
-    		// } else {
-        	// 	document.querySelector("div.reveal").appendChild(footer);
-   			// }
+			var footer = document.getElementsByClassName("footer")[0];
+    		if ( window.location.search.match( /print-pdf/gi ) ) {
+        		Reveal.addEventListener( 'ready', function( event ) {
+					var backgrounds = document.querySelectorAll(".slide-background");
+            		Array.from(backgrounds).forEach(
+						function(el) {el.innerHTML += footer.outerHTML;});
+					var sections = document.querySelectorAll("section");
+					Array.from(sections).forEach(
+						function(el) {el.innerHTML = emojione.toImage(el.innerHTML);});
+        		});
+    		} else {
+        		document.querySelector("div.reveal").appendChild(footer);
+   			}
+
     		</script>
 
 
