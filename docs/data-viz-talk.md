@@ -1,21 +1,151 @@
 <!-- .slide: data-background="#3F51B5" class="dark" -->
 
-### Tips, tricks, and philosophies on computational work
+### Looking at your data
 
-### Claire Duvallet
+#### _Intro to microbiome data visualization_
 
-Alm lab summit
+#### Claire Duvallet
 
-February 7, 2019
+Microbiome Hack 2019
+
+Cornell University
 
 ---
 
 <!-- .slide: data-background="#767171" class="dark" -->
 
-### Why this talk?
+### Who am I?
 
-- You've already heard my science    
-- I want to share the gospel of good practices    
+- Former PhD from Eric Alm's lab at MIT    
+- Future data scientist at Biobot Analytics
+
+---
+
+<link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+
+Most important data viz tools:
+
+:eyes: and <i class="em em-brain"></i>
+
+---
+
+<!-- .slide: data-background="#767171" class="dark" -->
+
+## 1. Raw data
+## 2. Data exploration
+## 3. Visualization
+
+---
+
+<!-- .slide: data-background="#767171" class="dark" -->
+
+## Looking at your raw data
+
+---
+
+_Most things in bioinformatics are text files_
+
+:spiral_note_pad:
+
+---
+
+- **DNA sequences**: fasta or fastq
+- **OTU tables**: tab- or comma-delimited
+    - biom files are text files too
+- **QIIME 2 artifacts**: zip files containing text files
+    - `unzip artifact.qza`
+
+---
+
+`less` is your friend!
+
+<insert gif of using less>
+
+---
+
+Otherwise, some tools and scripts exist to interact with raw data.
+
+* QIIME 2 View
+* FastQC
+* Scott's `caravan` scripts: [github.com/swo/caravan/tools](https://github.com/swo/caravan/tree/master/tools)
+
+<picture of fast qc plot>
+
+---
+
+<!-- .slide: data-background="#767171" class="dark" -->
+
+## Exploring your data
+
+1. Basic plot types
+2. Good sanity checks
+3. Basic microbiome analyses
+4. Using your :brain:
+
+---
+
+<!-- .slide: data-background="#767171" class="dark" -->
+
+## Basic plot types
+
+---
+
+Steal a lot from Scott and Sean's biostats class
+
+---
+
+<!-- .slide: data-background="#767171" class="dark" -->
+
+## Good sanity checks
+
+Known and trust your data before you start!
+
+---
+
+All your samples are there?
+Reads per sample
+Reads per OTUs
+Does it look like a stool sample?
+
+---
+
+<!-- .slide: data-background="#767171" class="dark" -->
+
+## Basic microbiome analyses
+
+A good place to start, but not a satisfactory place to finish...
+
+---
+
+PCA
+Alpha diversity
+Differential abundance and variability
+Correlation
+Prediction
+
+---
+
+<!-- .slide: data-background="#767171" class="dark" -->
+
+## Don't forget to use your :brain:!
+
+---
+
+Lung example (where are you gonna put your reads cutoff? can't just use same values as for poop)
+
+Hsiao et al example (PCA plot showed me something funky)
+
+---
+
+<!-- .slide: data-background="#767171" class="dark" -->
+
+## Visualizing your data
+
+1. Different viz for different questions
+2. Different viz for different audiences
+3. Basic microbiome analyses
+
+---
 
 ---
 
