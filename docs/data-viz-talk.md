@@ -1,6 +1,6 @@
 <!-- .slide: data-background="#3F51B5" class="dark" -->
 
-### Looking at your data
+### Looking at your data:
 
 #### _Intro to microbiome data visualization_
 
@@ -16,8 +16,10 @@ Cornell University
 
 ### Who am I?
 
-- Former PhD from Eric Alm's lab at MIT    
+- Former PhD student in Eric Alm's lab at MIT    
 - Future data scientist at Biobot Analytics
+
+_almlab.mit.edu | www.biobot.io_
 
 ---
 
@@ -31,9 +33,9 @@ Most important data viz tools:
 
 <!-- .slide: data-background="#767171" class="dark" -->
 
-## 1. Raw data
-## 2. Data exploration
-## 3. Visualization
+### 1. Looking at your raw data
+### 2. Exploring your processed data
+### 3. Visualizing your data
 
 ---
 
@@ -43,17 +45,27 @@ Most important data viz tools:
 
 ---
 
+Crucial core concept:
+
 _Most things in bioinformatics are text files_
 
 :spiral_note_pad:
 
 ---
 
-- **DNA sequences**: fasta or fastq
-- **OTU tables**: tab- or comma-delimited
-    - biom files are text files too
-- **QIIME 2 artifacts**: zip files containing text files
-    - `unzip artifact.qza`
+https://twitter.com/popgengoogling/status/1108372032339800064
+
+"is parsing txt files the pipetting of bioinformatics" (img/twitter_parsing_txt.png)
+
+---
+
+**DNA sequences**: fasta or fastq    
+
+**OTU tables**: tab- or comma-delimited    
+_biom files are text files too_
+
+**QIIME 2 artifacts**: zip files containing text files     
+`unzip artifact.qza`
 
 ---
 
@@ -61,9 +73,11 @@ _Most things in bioinformatics are text files_
 
 <insert gif of using less>
 
+\*_`grep` is also great_
+
 ---
 
-Otherwise, some tools and scripts exist to interact with raw data.
+Lots of specialized tools and scripts to interact with raw data
 
 * QIIME 2 View
 * FastQC
@@ -71,16 +85,28 @@ Otherwise, some tools and scripts exist to interact with raw data.
 
 <picture of fast qc plot>
 
+Note: but just looking at the raw files gets you like 90% of the way
+
 ---
 
 <!-- .slide: data-background="#767171" class="dark" -->
+
+### ~~1. Looking at your raw data~~
+### 2. Exploring your processed data
+### 3. Visualizing your data
+
+---
+
+<!-- .slide: data-background="#767171" class="dark" -->
+
+<link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
 
 ## Exploring your data
 
 1. Basic plot types
 2. Good sanity checks
 3. Basic microbiome analyses
-4. Using your :brain:
+4. Using your <i class="em em-brain"></i>
 
 ---
 
@@ -90,7 +116,98 @@ Otherwise, some tools and scripts exist to interact with raw data.
 
 ---
 
-Steal a lot from Scott and Sean's biostats class
+_What kind of data do you have?_
+
+_What do you want to show?_
+
+---
+
+Kinds of data:
+
+* Categorical (ordinal or not)
+* Numeric (discrete or continuous)
+
+Note: continuous includes dates, percentages/proportions
+
+---
+
+Things you can show:
+
+* Distributions
+* Relationships
+* Comparisons
+* Connections
+
+---
+
+### Distributions
+
+Histograms (usually)
+Frequency bar plots (if only a few categories)
+
+---
+
+### Relationships between two variables
+
+Scatter plot (almost always)
+Boxplot (if one variable is categorical)
+
+Others:
+
+Slope graph (to emphasize direction of shift)
+MA-plot (rarely, but useful to combine change with mean abundance)
+
+Note: slope graph is for when you're comparing the same data at different time points and for a relatively small number of comparisons. It also emphasizes the _direction_ of the change rather than the magnitude (show example from Rafa's ch11 book).
+
+---
+
+### Relationships between more than two variables
+
+Scatter plot with additional encoding (color, shape)
+Facets (AKA small multiples)
+
+---
+
+### Comparisons
+
+Bar plots (for single values only, unless you also show the data)
+Boxplots
+Stripplots (if you have few points and don't have room for boxes)
+Line plots (only for comparisons over time)
+Heatmaps (compare relative color between boxes, but doesn't really show absolute data)
+Ridge plots or violin plots (to compare distributions)
+
+Note: I think of relationship as "if x increases, what happens to y?" and comparisons as "which one is bigger?" -- but they're quite similar concepts so don't worry about the distinction too much.
+
+Note: Because they rely on the length of the bars to encode data, you must start the bars at zero.
+
+---
+
+### Compositions
+
+Stacked bar plot
+Pie chart (but only if you have 3 or fewer things and you're _really_ sure about it)
+Tree chart (I don't know how to make these tbh)
+
+---
+
+### Connections
+
+Circos plots
+Networks (need to prune and think critically about interpretation)
+
+---
+
+<!-- .slide: data-background="#767171" class="dark" -->
+
+<link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+
+## Exploring your data
+
+1. ~~Basic plot types~~
+2. Good sanity checks
+3. Basic microbiome analyses
+4. Using your <i class="em em-brain"></i>
 
 ---
 
@@ -107,13 +224,15 @@ Reads per sample
 Reads per OTUs
 Does it look like a stool sample?
 
+Note: also can use diversity as a proxy for things that went really bad. i.e. if you only see one bug, prob a contaminant.
+
 ---
 
 <!-- .slide: data-background="#767171" class="dark" -->
 
 ## Basic microbiome analyses
 
-A good place to start, but not a satisfactory place to finish...
+Good places to start (but not usually to finish)
 
 ---
 
@@ -127,7 +246,11 @@ Prediction
 
 <!-- .slide: data-background="#767171" class="dark" -->
 
-## Don't forget to use your :brain:!
+<link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+
+## Don't forget to use your <i class="em em-brain"></i>!
+
+Data exploration can lead to new hypotheses!
 
 ---
 
@@ -139,11 +262,20 @@ Hsiao et al example (PCA plot showed me something funky)
 
 <!-- .slide: data-background="#767171" class="dark" -->
 
+### ~~1. Looking at your raw data~~
+### ~~2. Exploring your processed data~~
+### 3. Visualizing your data
+
+---
+
+<!-- .slide: data-background="#767171" class="dark" -->
+
 ## Visualizing your data
 
-1. Different viz for different questions
-2. Different viz for different audiences
-3. Basic microbiome analyses
+1. Basic principles
+2. Different viz for different questions and audiences
+3. Microbiome visualization tools
+4. Examples from literature and Biobot
 
 ---
 
