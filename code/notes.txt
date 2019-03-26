@@ -1,0 +1,11 @@
+
+Sean Kearney's data: https://data.mendeley.com/datasets/86xzh5c85p/1
+
+https://api.mendeley.com/apidocs/apis/datasets/86xzh5c85p
+
+Download manually, can't figure out Mendeley interface.
+
+fpath="/Users/claire/Downloads/orthogonal-dietary-niche-enables-reversible-engraftment-of-a-gut-bacterial-commensal/seqtab_final.rds"
+data <- readRDS(fpath)
+newpath = "/Users/claire/Downloads/orthogonal-dietary-niche-enables-reversible-engraftment-of-a-gut-bacterial-commensal/seqtab_final.csv"
+write.csv(data, newpath)
