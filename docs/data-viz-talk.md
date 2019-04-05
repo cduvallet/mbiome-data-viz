@@ -51,13 +51,13 @@ _Most things in bioinformatics are text files_
 
 :spiral_note_pad:
 
----
+----
 
-https://twitter.com/popgengoogling/status/1108372032339800064
+<img src="img/twitter_parsing_txt.png" width="80%">
 
-"is parsing txt files the pipetting of bioinformatics" (img/twitter_parsing_txt.png)
+Note: https://twitter.com/popgengoogling/status/1108372032339800064
 
----
+----
 
 **DNA sequences**: fasta or fastq    
 
@@ -67,7 +67,7 @@ _biom files are text files too_
 **QIIME 2 artifacts**: zip files containing text files     
 `unzip artifact.qza`
 
----
+----
 
 `less` is your friend!
 
@@ -80,10 +80,12 @@ _biom files are text files too_
 Lots of specialized tools and scripts to interact with raw data
 
 * QIIME 2 View
-* FastQC
 * Scott's `caravan` scripts: [github.com/swo/caravan/tools](https://github.com/swo/caravan/tree/master/tools)
+* FastQC
 
-<picture of fast qc plot>
+----
+
+<img src="img/fastqc_plot.png" width="70%">
 
 Note: but just looking at the raw files gets you like 90% of the way
 
@@ -103,10 +105,133 @@ Note: but just looking at the raw files gets you like 90% of the way
 
 ## Exploring your data
 
-1. Basic plot types
-2. Good sanity checks
-3. Basic microbiome analyses
-4. Using your <i class="em em-brain"></i>
+1. Good sanity checks
+2. Basic microbiome analyses
+3. Using your <i class="em em-brain"></i>
+
+---
+
+<!-- .slide: data-background="#767171" class="dark" -->
+
+## Good sanity checks
+
+Know and trust your data before you start!
+
+----
+
+* All your samples are there?
+* Reads per sample
+* Reads per OTU
+* Does it look like a stool sample?
+
+Note: also can use diversity as a proxy for things that went really bad. i.e. if you only see one bug, prob a contaminant.
+
+----
+
+<Show examples of plots for reads per sample and reads per OTU>
+
+----
+
+<!-- .slide: data-background="#767171" class="dark" -->
+
+<link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+
+## Exploring your data
+
+1. ~~Good sanity checks~~
+2. Basic microbiome analyses
+3. Using your <i class="em em-brain"></i>
+
+---
+
+<!-- .slide: data-background="#767171" class="dark" -->
+
+## Basic microbiome analyses
+
+Good places to start (but not usually to finish)
+
+----
+
+### Alpha diversity
+
+<img of an even community, a rich community, and a high SDI community; show SDI/chao/simpson>
+
+----
+
+### PCA
+
+Calculate beta diversity between all samples and perform principal component analysis.
+
+----
+
+### Differential abundance and variability
+
+"Are any taxa significantly different between condition A and B?"
+
+----
+
+### Correlation
+
+(1) With an external variable: "is BMI correlated with abundance of taxa X?"
+(2) Between taxa. "is taxa X correlated with taxa Y?"
+_Be careful of compositional effects! Use methods like SparCC or SPIEC-EASY._
+
+<img of bal-gastric JSD vs. reflux>
+
+----
+
+### Prediction
+
+"Can the microbiome predict a certain metadata variable?"
+
+----
+
+<!-- .slide: data-background="#767171" class="dark" -->
+
+<link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+
+## Exploring your data
+
+1. ~~Good sanity checks~~
+2. ~~Basic microbiome analyses~~
+3. Using your <i class="em em-brain"></i>
+
+---
+
+<!-- .slide: data-background="#767171" class="dark" -->
+
+<link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+
+## Don't forget to use your <i class="em em-brain"></i>!
+
+Data exploration can lead to new hypotheses!
+
+----
+
+Lung example (where are you gonna put your reads cutoff? can't just use same values as for poop)
+
+Stomach vs. throat bugs?
+
+Hsiao et al example (PCA plot showed me something funky)
+
+----
+
+<!-- .slide: data-background="#767171" class="dark" -->
+
+### ~~1. Looking at your raw data~~
+### ~~2. Exploring your processed data~~
+### 3. Visualizing your data
+
+---
+
+<!-- .slide: data-background="#767171" class="dark" -->
+
+## Visualizing your data
+
+1. Basic plot types and principles
+2. Different viz for different questions and audiences
+3. Microbiome visualization tools
+4. Examples from literature and Biobot
 
 ---
 
@@ -133,27 +258,34 @@ Note: continuous includes dates, percentages/proportions
 
 Things you can show:
 
-* Distributions
-* Relationships
-* Comparisons
-* Connections
+* Distributions: "what sorts of values does this one variable take?"
+* Relationships: "what happens to y when x changes?"
+* Comparisons: "which one is bigger?"
+* Connections: "which ones go together?"
 
 ---
 
 ### Distributions
 
 Histograms (usually)
-Frequency bar plots (if only a few categories)
+Frequency bar plots (for categorical data)
+
+<show an image of histogram on the left, frequency bar plot on the right>
 
 ---
 
 ### Relationships between two variables
 
-Scatter plot (almost always)
-Boxplot (if one variable is categorical)
+Scatter plot (almost always)    
+Boxplot (if one variable is categorical)    
 
-Others:
+<image: alpha diversity vs. BMI; alpha diversity vs. obese status>
 
+---
+
+#### Showing paired data
+
+Scatter plot
 Slope graph (to emphasize direction of shift)
 MA-plot (rarely, but useful to combine change with mean abundance)
 
@@ -166,20 +298,33 @@ Note: slope graph is for when you're comparing the same data at different time p
 Scatter plot with additional encoding (color, shape)
 Facets (AKA small multiples)
 
+<image: reflux vs gastric-lung JSD with aspiration status encoded>
+
+---
+
+<example of a small multiples plot (need to think of microbiome examples)>
+
 ---
 
 ### Comparisons
 
-Bar plots (for single values only, unless you also show the data)
-Boxplots
-Stripplots (if you have few points and don't have room for boxes)
-Line plots (only for comparisons over time)
-Heatmaps (compare relative color between boxes, but doesn't really show absolute data)
-Ridge plots or violin plots (to compare distributions)
+**Most comparisons**: boxplots and/or stripplots
+**Single values**: bar plots     
+**Temporal**: line plots
+**High-dimensional, highligh relative changes**: heatmaps
+**Distributions**: ridge plots or violin plots
 
-Note: I think of relationship as "if x increases, what happens to y?" and comparisons as "which one is bigger?" -- but they're quite similar concepts so don't worry about the distinction too much.
+Note: I think of relationship as "if x increases, what happens to y?" and comparisons as "which one is bigger?" -- but they're quite similar concepts so don't worry about the distinction too much. Bar plots: because they rely on the length of the bars to encode data, you must start the bars at zero.
 
-Note: Because they rely on the length of the bars to encode data, you must start the bars at zero.
+---
+
+Examples of each type:
+
+boxplot/stripplot: show all three, alpha div vs. obesity
+
+single values: just for giggles, show my sample size comparison
+
+temporal:
 
 ---
 
@@ -198,73 +343,23 @@ Networks (need to prune and think critically about interpretation)
 
 ---
 
-<!-- .slide: data-background="#767171" class="dark" -->
-
-<link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
-
-## Exploring your data
-
-1. ~~Basic plot types~~
-2. Good sanity checks
-3. Basic microbiome analyses
-4. Using your <i class="em em-brain"></i>
+### Basic principles for data visualization
 
 ---
 
-<!-- .slide: data-background="#767171" class="dark" -->
+# Show the data!
 
-## Good sanity checks
-
-Known and trust your data before you start!
+<ancombe's quartet>
 
 ---
 
-All your samples are there?
-Reads per sample
-Reads per OTUs
-Does it look like a stool sample?
+### Many other principles for
 
-Note: also can use diversity as a proxy for things that went really bad. i.e. if you only see one bug, prob a contaminant.
+* color, opacity, shapes, and size of points
+* annotations and size of plot decorators
+* order and size of things you're presenting
 
----
-
-<!-- .slide: data-background="#767171" class="dark" -->
-
-## Basic microbiome analyses
-
-Good places to start (but not usually to finish)
-
----
-
-PCA
-Alpha diversity
-Differential abundance and variability
-Correlation
-Prediction
-
----
-
-<!-- .slide: data-background="#767171" class="dark" -->
-
-<link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
-
-## Don't forget to use your <i class="em em-brain"></i>!
-
-Data exploration can lead to new hypotheses!
-
----
-
-Lung example (where are you gonna put your reads cutoff? can't just use same values as for poop)
-
-Hsiao et al example (PCA plot showed me something funky)
-
----
-
-<!-- .slide: data-background="#767171" class="dark" -->
-
-### ~~1. Looking at your raw data~~
-### ~~2. Exploring your processed data~~
-### 3. Visualizing your data
+github.com/cduvallet/mbiome-data-viz/refs
 
 ---
 
@@ -272,12 +367,103 @@ Hsiao et al example (PCA plot showed me something funky)
 
 ## Visualizing your data
 
-1. Basic principles
+1. ~~Basic plot types and principles~~
 2. Different viz for different questions and audiences
 3. Microbiome visualization tools
 4. Examples from literature and Biobot
 
 ---
+
+## Different viz for different questions
+
+- my meta-analysis
+    - show the heatmaps sorted by "phylogeny" vs. by "blue-ness" and "red-ness"
+
+- maybe: 24hr paper
+    - show the overall heatmap (to give a sense of scale of data and overall noise)
+    - vs. the line plots (to see the dynamics more clearly)
+
+---
+
+## Different viz for different audiences
+
+- my meta-analysis in the paper, in a semi-technical presentation, and in a non-technical presentation
+
+- link to comm lab article
+
+---
+
+<!-- .slide: data-background="#767171" class="dark" -->
+
+## Visualizing your data
+
+1. ~~Basic plot types and principles~~
+2. ~~Different viz for different questions and audiences~~
+3. Microbiome visualization tools
+4. Examples from literature and Biobot
+
+---
+
+## Visualization tools
+
+- python, R, MATLAB
+- Tableau, D3, etc
+- Interactive: Bokeh, Shiny, etc
+- Microbiome-specific: Calour, Anvio, QIIME 2 View, ITOL
+
+---
+
+<!-- .slide: data-background="#767171" class="dark" -->
+
+## Visualizing your data
+
+1. ~~Basic plot types and principles~~
+2. ~~Different viz for different questions and audiences~~
+3. ~~Microbiome visualization tools~~
+4. Examples from literature and Biobot
+
+---
+
+My heatmaps
+
+---
+
+Then link to the part of figure 1 where I show the percent which are higher in cases vs. controls
+
+---
+
+Smillie's donor/patient prediction tree
+
+---
+
+Maybe: Zeevi paper on glycemic response
+
+Reconstitution of the gut microbiota of antibiotic-treated patients by autologous fecal microbiota transplant
+- fig 3 tsne plot
+    - point out the use of color to encode high vs. low diversity. what other ways could they have done this?
+    - what about the color-coding, what do you think about that? how else could they have done it?
+- fig 3 (?) small multiples of trajectories
+    - the point of this figure is supposed to be: auto-FMT patients consistently regained diversity (even if they weren’t the same as their initial sample); no-FMT controls did not
+    - what are some things that make this clear? unclear?
+        - clear: highlighting the start and end with color
+        - unclear: background blob colors. connecting the start and end with a bold line. adding the percent on top of each plot (should be a separate bar plot, probably)
+- fig ... heatmaps
+    - main takeaway? (top three plots go from dark to light back to dark; bottom three go from dark to light and stay light)
+    - what is all the info encoded on here?
+        - diversity: why did they categorize this? should be a gradient with the raw values
+        - similarity: same, should not categorize this. adds noise and hides data.
+        - color coding microbial species: i'm torn on this one. but problem is that there's no legend so not great.
+    - how else could they show this data? can we draw out a schematic of what it would look like?
+
+Or the one with different contributions to variance in mcirobiome (i think still eran segal, the one where environment plays)
+
+Oh the nature microbiology paper with all the different media
+And the different drug/bug effects
+
+---
+
+Biobot's report
+
 
 ---
 
