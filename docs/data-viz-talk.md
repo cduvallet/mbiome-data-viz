@@ -130,7 +130,7 @@ Note: also can use diversity as a proxy for things that went really bad. i.e. if
 
 <Show examples of plots for reads per sample and reads per OTU>
 
-----
+---
 
 <!-- .slide: data-background="#767171" class="dark" -->
 
@@ -154,35 +154,68 @@ Good places to start (but not usually to finish)
 
 ### Alpha diversity
 
-<img of an even community, a rich community, and a high SDI community; show SDI/chao/simpson>
+_How diverse is the community in each sample?_
+
+<img src="img/alpha-diversity.png">
 
 ----
 
-### PCA
+### Beta diversity & PCA
 
-Calculate beta diversity between all samples and perform principal component analysis.
+_How different are all the samples from each other?_
 
-----
-
-### Differential abundance and variability
-
-"Are any taxa significantly different between condition A and B?"
+<img src="img/beta-diversity.png">
 
 ----
 
-### Correlation
+### Differential abundance
 
-(1) With an external variable: "is BMI correlated with abundance of taxa X?"
-(2) Between taxa. "is taxa X correlated with taxa Y?"
+_"Are any taxa differently abundant between condition A and B?"_
+
+<img src="img/diff-abun.png" width="60%">
+
+----
+
+### Differential abundance
+
+### \*and variability
+
+<img src="img/corncob-ex.png" width="75%">
+
+<img src="img/corncob-logo.png" width="10%">
+ _Martin, Witten, and Willis (2019)._
+
+ _http://arxiv.org/abs/1902.02776_
+
+----
+
+### Correlation with a metadata variable
+
+_Is BMI correlated with abundance of taxa X?_
+
+<img src="img/correlation-ex.png" width="70%">
+
+_r = -0.03, p = 0.6_
+
+Note: fun game: http://guessthecorrelation.com/
+
+----
+
+### Correlation between taxa
+
+_Is taxa X correlated with taxa Y?_
+
+<img src="img/spiec-easy.png" width="70%">
+
 _Be careful of compositional effects! Use methods like SparCC or SPIEC-EASY._
-
-<img of bal-gastric JSD vs. reflux>
 
 ----
 
 ### Prediction
 
-"Can the microbiome predict a certain metadata variable?"
+_Can the microbiome predict a certain metadata variable?_
+
+<img src="img/confusiong-matrix.png">
 
 ----
 
