@@ -23,6 +23,14 @@ _almlab.mit.edu | www.biobot.io_
 
 ---
 
+<!-- .slide: data-background="#767171" class="dark" -->
+
+### 1. Looking at your raw data
+### 2. Exploring your processed data
+### 3. Visualizing your data
+
+---
+
 <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
 
 Most important data viz tools:
@@ -33,17 +41,9 @@ Most important data viz tools:
 
 <!-- .slide: data-background="#767171" class="dark" -->
 
-### 1. Looking at your raw data
-### 2. Exploring your processed data
-### 3. Visualizing your data
-
----
-
-<!-- .slide: data-background="#767171" class="dark" -->
-
 ## Looking at your raw data
 
----
+----
 
 Crucial core concept:
 
@@ -75,7 +75,7 @@ _biom files are text files too_
 
 \*_`grep` is also great_
 
----
+----
 
 Lots of specialized tools and scripts to interact with raw data
 
@@ -109,7 +109,7 @@ Note: but just looking at the raw files gets you like 90% of the way
 2. Basic microbiome analyses
 3. Using your <i class="em em-brain"></i>
 
----
+----
 
 <!-- .slide: data-background="#767171" class="dark" -->
 
@@ -128,7 +128,19 @@ Note: also can use diversity as a proxy for things that went really bad. i.e. if
 
 ----
 
-<Show examples of plots for reads per sample and reads per OTU>
+<img src="img/reads-per-sample.png">
+
+----
+
+Raw data
+
+<img src="img/otu-distribution.png" width="50%">
+
+No singletons
+
+<img src="img/otu-distribution-no-singletons.png" width="50%">
+
+Note: Microbiome data is usually very sparse.
 
 ---
 
@@ -142,13 +154,15 @@ Note: also can use diversity as a proxy for things that went really bad. i.e. if
 2. Basic microbiome analyses
 3. Using your <i class="em em-brain"></i>
 
----
+----
 
 <!-- .slide: data-background="#767171" class="dark" -->
 
 ## Basic microbiome analyses
 
 Good places to start (but not usually to finish)
+
+Note: we'll be thinking through ways to visualize these later, so keep it in mind.
 
 ----
 
@@ -180,9 +194,8 @@ _"Are any taxa differently abundant between condition A and B?"_
 
 ### \*and variability
 
-<img src="img/corncob-ex.png" width="75%">
+<img src="img/corncob-ex.png" width="80%">
 
-<img src="img/corncob-logo.png" width="10%">
  _Martin, Witten, and Willis (2019)._
 
  _http://arxiv.org/abs/1902.02776_
@@ -193,11 +206,19 @@ _"Are any taxa differently abundant between condition A and B?"_
 
 _Is BMI correlated with abundance of taxa X?_
 
-<img src="img/correlation-ex.png" width="70%">
+_Is alpha diversity correlated with age?_
 
-_r = -0.03, p = 0.6_
+<img src="img/correlation-ex.png" width="35%">
 
 Note: fun game: http://guessthecorrelation.com/
+
+----
+
+Always look at the raw data!
+
+<img src="img/different-correlations.png">
+
+Note: source is https://github.com/janhove/cannonball
 
 ----
 
@@ -215,9 +236,9 @@ _Be careful of compositional effects! Use methods like SparCC or SPIEC-EASY._
 
 _Can the microbiome predict a certain metadata variable?_
 
-<img src="img/confusiong-matrix.png">
+<img src="img/confusion-matrix.png" width="80%">
 
-----
+---
 
 <!-- .slide: data-background="#767171" class="dark" -->
 
@@ -229,7 +250,7 @@ _Can the microbiome predict a certain metadata variable?_
 2. ~~Basic microbiome analyses~~
 3. Using your <i class="em em-brain"></i>
 
----
+----
 
 <!-- .slide: data-background="#767171" class="dark" -->
 
@@ -243,7 +264,11 @@ Data exploration can lead to new hypotheses!
 
 Lung example (where are you gonna put your reads cutoff? can't just use same values as for poop)
 
+----
+
 Stomach vs. throat bugs?
+
+----
 
 Hsiao et al example (PCA plot showed me something funky)
 
