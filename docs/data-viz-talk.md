@@ -262,17 +262,45 @@ Data exploration can lead to new hypotheses!
 
 ----
 
-Lung example (where are you gonna put your reads cutoff? can't just use same values as for poop)
+Where will you put your sample read cutoff?
+
+<img src="img/lung-reads-per-sample.png">
+
+NOte: Lung example (where are you gonna put your reads cutoff? can't just use same values as for poop)
 
 ----
 
-Stomach vs. throat bugs?
+Stomach vs. throat bacteria?
+
+<img src="img/gastric-otus.png">
+
+Note: clinical collaborator wanted to identify "stomach" bacteria but this was difficult for a lot of reasons, mostly that everything in the throat is also in the stomach. Led us to a different analysis approach, looking at beta-diversity between these communities. But it also eventually led us to an interesting discovery...
 
 ----
 
-Hsiao et al example (PCA plot showed me something funky)
+Eventually led us to an interesting discovery...
+
+<img src="img/figure.within_pt_vs_between_pt.png">
+
+Note: we'll pick apart this figure later.
 
 ----
+
+<img src="img/hsiao-pca.png">
+
+Hsiao et al, _Nature_ 2014. doi:10.1038/nature13738
+
+Note: Hsiao et al example (PCA plot showed me something funky)
+
+----
+
+<img src="img/hsiao-pca-components.png">
+
+----
+
+<img src="img/hsiao-pc1-otu.png">
+
+---
 
 <!-- .slide: data-background="#767171" class="dark" -->
 
