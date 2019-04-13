@@ -1,14 +1,14 @@
 <!-- .slide: data-background="#3F51B5" class="dark" -->
 
-### Looking at your data:
+### Intro to microbiome data visualization
 
-#### _Intro to microbiome data visualization_
-
-#### Claire Duvallet
+**Claire Duvallet**
 
 Microbiome Hack 2019
 
 Cornell University
+
+Slides: [cduvallet.github.io/mbiome-data-viz](https://cduvallet.github.io/mbiome-data-viz/)
 
 ---
 
@@ -20,6 +20,16 @@ Cornell University
 - Future data scientist at Biobot Analytics
 
 _almlab.mit.edu | www.biobot.io_
+
+---
+
+<!-- .slide: data-background="#767171" class="dark" -->
+
+### Why this talk?
+
+- Encourage you to dig into your data
+- Provide starting examples and tools to continue learning about data viz
+- Go through real-world visualizations
 
 ---
 
@@ -77,17 +87,13 @@ _biom files are text files too_
 
 ----
 
-Lots of specialized tools and scripts to interact with raw data
+Many specialized tools and scripts to interact with raw data:
 
 * QIIME 2 View
-* Scott's `caravan` scripts: [github.com/swo/caravan/tools](https://github.com/swo/caravan/tree/master/tools)
 * FastQC
+* Scott's `caravan` scripts: [github.com/swo/caravan/tools](https://github.com/swo/caravan/tree/master/tools)
 
-----
-
-<img src="img/fastqc_plot.png" width="70%">
-
-Note: but just looking at the raw files gets you like 90% of the way
+_But just looking at the raw files gets you ~90% of the way_
 
 ---
 
@@ -128,19 +134,15 @@ Note: also can use diversity as a proxy for things that went really bad. i.e. if
 
 ----
 
+Stool samples should have at least ~10,000 reads each
+
 <img src="img/reads-per-sample.png">
 
 ----
 
-Raw data
+OTUs are usually very sparse
 
 <img src="img/otu-distribution.png" width="50%">
-
-No singletons
-
-<img src="img/otu-distribution-no-singletons.png" width="50%">
-
-Note: Microbiome data is usually very sparse.
 
 ---
 
@@ -184,7 +186,7 @@ _How different are all the samples from each other?_
 
 ### Differential abundance
 
-_"Are any taxa differently abundant between condition A and B?"_
+_Are any taxa differently abundant between condition A and B?_
 
 <img src="img/diff-abun.png" width="60%">
 
@@ -262,7 +264,7 @@ Data exploration can lead to new hypotheses!
 
 ----
 
-Where will you put your sample read cutoff?
+Lung data: where to put your sample read cutoff?
 
 <img src="img/lung-reads-per-sample.png">
 
@@ -272,7 +274,7 @@ NOte: Lung example (where are you gonna put your reads cutoff? can't just use sa
 
 Stomach vs. throat bacteria?
 
-<img src="img/gastric-otus.png">
+<img src="img/gastric-otus.png" width="35%">
 
 Note: clinical collaborator wanted to identify "stomach" bacteria but this was difficult for a lot of reasons, mostly that everything in the throat is also in the stomach. Led us to a different analysis approach, looking at beta-diversity between these communities. But it also eventually led us to an interesting discovery...
 
@@ -285,6 +287,8 @@ Eventually led us to an interesting discovery...
 Note: we'll pick apart this figure later.
 
 ----
+
+Also: pay attention to what your data is trying to tell you
 
 <img src="img/hsiao-pca.png">
 
@@ -314,95 +318,106 @@ Note: Hsiao et al example (PCA plot showed me something funky)
 
 ## Visualizing your data
 
-1. Basic plot types and principles
-2. Different viz for different questions and audiences
+1. Basic plot types
+2. Different viz for different purposes
 3. Microbiome visualization tools
 4. Examples from literature and Biobot
 
----
+----
 
 <!-- .slide: data-background="#767171" class="dark" -->
 
 ## Basic plot types
 
----
-
 _What kind of data do you have?_
 
 _What do you want to show?_
 
----
+----
 
-Kinds of data:
+### Kinds of data
 
 * Categorical (ordinal or not)
 * Numeric (discrete or continuous)
 
 Note: continuous includes dates, percentages/proportions
 
----
+----
 
-Things you can show:
+### Some things you can show
 
-* Distributions: "what sorts of values does this one variable take?"
-* Relationships: "what happens to y when x changes?"
-* Comparisons: "which one is bigger?"
-* Connections: "which ones go together?"
+**Distributions**: "what sorts of values does this one variable take?"     
 
----
+**Relationships**: "what happens to y when x changes?"
+
+**Comparisons**: "which one is bigger?"
+
+----
 
 ### Distributions
 
+_What sorts of values does this one variable take?_
+
 Histograms (usually)
+
 Frequency bar plots (for categorical data)
 
 <show an image of histogram on the left, frequency bar plot on the right>
 
----
+Note: distributions are good for showing relative abundances of single OTUs, alpha diversity
 
-### Relationships between two variables
+----
 
-Scatter plot (almost always)    
+### Relationship between two variables
+
+_What happens to y when x changes?_
+
+Scatter plot (almost always)   
+
 Boxplot (if one variable is categorical)    
 
-<image: alpha diversity vs. BMI; alpha diversity vs. obese status>
+<img src="img/alpha-diversity-correlations.png" width="50%">
 
----
+----
 
-#### Showing paired data
+### Relationship between more than two variables
 
-Scatter plot
-Slope graph (to emphasize direction of shift)
-MA-plot (rarely, but useful to combine change with mean abundance)
+_What happens to y when x changes?_
 
-Note: slope graph is for when you're comparing the same data at different time points and for a relatively small number of comparisons. It also emphasizes the _direction_ of the change rather than the magnitude (show example from Rafa's ch11 book).
+Scatter plot with additional encoding (color, shape)      
+Facets (AKA small multiples)       
 
----
+<img src="img/figure5.reflux_correlations.png" width="50%">
 
-### Relationships between more than two variables
+----
 
-Scatter plot with additional encoding (color, shape)
-Facets (AKA small multiples)
+### Paired data
 
-<image: reflux vs gastric-lung JSD with aspiration status encoded>
+_What happens to the "same" y when x changes?_
 
----
+Scatter plot or slope graph       
 
-<example of a small multiples plot (need to think of microbiome examples)>
+Boxplot of differences or MA-plot             
 
----
+<img src="img/paired-data.png" width="80%">
+
+Note: Paired data is when the two measurements belong to the same thing. So, for example, the abundance of an OTU in _the same mouse_ at two times points. slope graph is for when you're comparing the same data at different time points and for a relatively small number of comparisons. It also emphasizes the _direction_ of the change rather than the magnitude (show example from Rafa's ch11 book).
+
+----
 
 ### Comparisons
 
-**Most comparisons**: boxplots and/or stripplots
-**Single values**: bar plots     
-**Temporal**: line plots
-**High-dimensional, highligh relative changes**: heatmaps
-**Distributions**: ridge plots or violin plots
+_Which one is bigger?_
+
+**Most comparisons**: boxplots and/or stripplots        
+**Single values**: bar plots      
+**Temporal**: line plots      
+**High-dimensional**: heatmaps      
+**Distributions**: ridge plots or violin plots      
 
 Note: I think of relationship as "if x increases, what happens to y?" and comparisons as "which one is bigger?" -- but they're quite similar concepts so don't worry about the distinction too much. Bar plots: because they rely on the length of the bars to encode data, you must start the bars at zero.
 
----
+----
 
 Examples of each type:
 
@@ -412,32 +427,36 @@ single values: just for giggles, show my sample size comparison
 
 temporal:
 
----
+----
 
 ### Compositions
 
+_What's this made up of?_
+
 Stacked bar plot
-Pie chart (but only if you have 3 or fewer things and you're _really_ sure about it)
-Tree chart (I don't know how to make these tbh)
-
----
-
-### Connections
-
-Circos plots
-Networks (need to prune and think critically about interpretation)
+Pie chart (but only if you are showing few things and you're _really_ sure about it)
 
 ---
 
 ### Basic principles for data visualization
 
----
+----
 
 # Show the data!
 
-<ancombe's quartet>
+<img src="img/ancombes-quartet.gif">
 
----
+https://www.autodeskresearch.com/publications/samestats
+
+Note: there's really only one basic principle. For pretty visualizations, this can be relaxed a little bit -- but you still always need to make sure your data is reliably represented and adds something to the viz.
+
+----
+
+# Remember your audience
+
+# Communicate "what's the point"
+
+----
 
 ### Many other principles for
 
@@ -445,7 +464,9 @@ Networks (need to prune and think critically about interpretation)
 * annotations and size of plot decorators
 * order and size of things you're presenting
 
-github.com/cduvallet/mbiome-data-viz/refs
+Read more: github.com/cduvallet/mbiome-data-viz/refs
+
+Note: these are also things you tweak to change your message.
 
 ---
 
@@ -458,22 +479,65 @@ github.com/cduvallet/mbiome-data-viz/refs
 3. Microbiome visualization tools
 4. Examples from literature and Biobot
 
----
+----
 
-## Different viz for different questions
+## Different visualizations answer different questions
 
-- my meta-analysis
-    - show the heatmaps sorted by "phylogeny" vs. by "blue-ness" and "red-ness"
+----
 
-- maybe: 24hr paper
-    - show the overall heatmap (to give a sense of scale of data and overall noise)
-    - vs. the line plots (to see the dynamics more clearly)
+Heatmaps sorted by phylogeny provide broad overview and reveal few patterns.
 
----
+<img src="img/overall_heatmap.png">
+
+Duvallet et al, _Nature Communications_ 2017
+
+----
+
+Heatmaps sorted by direction of effect reveal strong disease-specific patterns.
+
+<img src="img/some-disease-heatmaps.png">
+
+----
+
+### Stacked bar plots vs. line plots vs. heatmap: what does each one highlight?
+
+24-hour sampling of residential sewage.
+
+----
+
+<img src="img/fig3 (from downloads folder)">
+
+----
+
+<img src="img/fig4">
+
+----
+
+<img src="img/fig5">
+
+----
+
+### Similar data, different conclusions
+
+Both figures enable comparison of JSD between on and off PPI patients, but one explicitly highlights it.
+
+Note: I wanted to make the point that this data is "meh" so I showed the correlation plot. The boxplot condenses it
+
+----
+
+<img src="img/reflux-correlation-by-ppi.png">
+
+----
+
+<img src="img/jsd-by-ppi.png">
+
+----
 
 ## Different viz for different audiences
 
 - my meta-analysis in the paper, in a semi-technical presentation, and in a non-technical presentation
+
+- show my bar chart (basically go through my whole paper and show how i give the talk for it. maybe pull other stuff from my defense too)
 
 - link to comm lab article
 
@@ -488,13 +552,13 @@ github.com/cduvallet/mbiome-data-viz/refs
 3. Microbiome visualization tools
 4. Examples from literature and Biobot
 
----
+----
 
 ## Visualization tools
 
 - python, R, MATLAB
 - Tableau, D3, etc
-- Interactive: Bokeh, Shiny, etc
+- Interactive: Bokeh, R Shiny, etc
 - Microbiome-specific: Calour, Anvio, QIIME 2 View, ITOL
 
 ---
@@ -522,8 +586,6 @@ Smillie's donor/patient prediction tree
 
 ---
 
-Maybe: Zeevi paper on glycemic response
-
 Reconstitution of the gut microbiota of antibiotic-treated patients by autologous fecal microbiota transplant
 - fig 3 tsne plot
     - point out the use of color to encode high vs. low diversity. what other ways could they have done this?
@@ -541,391 +603,11 @@ Reconstitution of the gut microbiota of antibiotic-treated patients by autologou
         - color coding microbial species: i'm torn on this one. but problem is that there's no legend so not great.
     - how else could they show this data? can we draw out a schematic of what it would look like?
 
-Or the one with different contributions to variance in mcirobiome (i think still eran segal, the one where environment plays)
-
-Oh the nature microbiology paper with all the different media
-And the different drug/bug effects
+Or the one with different contributions to variance in mcirobiome (i think still eran segal, the one where environment plays (Environment dominates over host genetics in shaping human gut microbiota) - shows good and bad use of color [making it pretty is not always the right thing to do])
 
 ---
 
 Biobot's report
 
-
----
-
-<!-- .slide: data-background="#767171" class="dark" -->
-
-## 1. Philosophy
-## 2. Organization
-## 3. Code
-
----
-
-<!-- .slide: data-background="#3F51B5" class="dark" -->
-
-## 1. Philosophies
-
----
-
-### Philosophy 1
-
-#### Everything I do, I do for me*
-
-_\*future me, that is_
-
-:heart_eyes_cat:
-
----
-
-#### "What can I do to make future Claire love present Claire?"
-
-Leave bread crumbs everywhere:
-READMEs, comments, docs           
-
----
-
-If you died in a bus crash tomorrow, how hard would it be to pick up the pieces?
-
-:oncoming_bus:
-
-If your computer dies the week of your defense, how long would it take you to get back up and running?
-
-:scream:
-
----
-
-### Philosophy 2
-
-Grad school is a time to build skills and _grow_
-
-:deciduous_tree:
-
----
-
-#### What's in it for me?
-
-In my PhD, I said yes to things that benefited me.
-
-_Learning new skills, making connections, building good favor: all of it counts!_
-
-#### Why am I doing what I'm doing?
-
-Note: just make sure you're not doing something for nothing! this talk is an example! I wanted to learn this new presentation style, and write down my reflections on strategies that worked for posterity. Examples: almlab website --> learned xml and css sort of, microbiome club --> got infinite favors from eric
-
----
-
-#### Also, if it would 20% additional effort to be useful to the rest of the world, do it
-
-¯\\\_(ツ)\_/¯
-
-Just seems like the right thing to do...
-
-Note: also my brother tricked me into this one, slash I misinterpreted him.
-
----
-
-<!-- .slide: data-background="#3F51B5" class="dark" -->
-
-## 2. Organization
-
-Projects     
-Notes and files      
-Data      
-
----
-
-All of my repos are basically the same structure:
-
-```shell
-├── Makefile           
-├── README.md        <- If you don't have a README
-|                       did you even make a repo?
-|
-├── data             <- OTU tables (if small enough),
-|                       QIIME 2 outputs, metadata excel
-|                       files, trees, etc.
-│
-├── src              <- All code: scripts, notebooks, etc.
-|
-└── final            <- Final figures, supp files, tables.
-
-```
-
----
-
-#### data/
-
-```shell
-├── data
-    ├── raw          <- Raw data in all of its
-    |                   messy glory. NEVER CHANGE!
-    |                   Raw data = outputs of processing,
-    |                   e.g. original OTU table.
-    ├── clean        <- Intermediate data that has
-    |                   been cleaned up, e.g. OTU
-    |                   table with low QC samples
-    |                   removed.
-    └── analysis     <- Outputs from analyses (e.g.
-                        beta diversity, p-values, etc)
-```
-
-Some files will probably be too large to commit: **keep these backed up somewhere else!**
-
-Note: can have other folders here too. Others I've had are qiime2-output, tree, etc. Also look into github large file storage
-
----
-
-#### src/
-
-```shell
-├── src
-    ├── data         <- Code used to wrangle and
-    |                   clean data.
-    |── exploration  <- Jumble of iPython notebooks
-    |                   with preliminary work. Label
-    |                   these by date + brief description.
-    ├── analysis     <- Scripts used to produce files
-    |                   in data/analysis/. For the most
-    |                   part, Makefile calls these.
-    ├── figures      <- Scripts to make figures.
-    └── util         <- If you want, files with commonly
-                        re-used functions
-```
-
-Iterative process between notebooks and scripts.
-
----
-
-#### final/
-
-```shell
-├── final
-    ├── figures      <- Where you save final png's,
-    |                   also pushed to GitHub if you want.
-    |── tables       <- If you're feeling ambitious,
-    |                   markdown versions of tables
-    └── supp_files   <- Files that would otherwise be
-                        supplementary Excel files
-```
-
-Mostly for you to organize outputs.
-
----
-
-Read more at Cookie Cutter data science:
-
-https://drivendata.github.io/cookiecutter-data-science/
-
----
-
-<!-- .slide: data-background="#3F51B5" class="dark" -->
-
-## Organization
-
-~~Projects~~       
-Notes and files      
-Data      
-
----
-
-#### Make all notes and files human-readable and searchable
-
-Anything "messy" starts with a date
-
-Use delimiters creatively
-
-`grep` is your best friend
-
----
-
-#### There is only one correct way to write the date
-
-# 2019-02-07
-
----
-
-### It's not just me!
-
-<img src="img/naming_files_tweet.png" width="40%">
-
-<img src="img/naming_files.png" width="40%">
-
-http://buff.ly/2wa5QXz
-
----
-
-<img src="img/notes_example.png">
-
-Note: this my notes folder. Lots of different sorts of things, not super organized (i.e. a human definitely did this), but really easy to grep for what I need.
-
----
-
-Also, everything is on the cloud.
-
-_(Remember the potential :scream:)_
-
-<img src="img/documents.png", width="60%">
-
----
-
-<!-- .slide: data-background="#3F51B5" class="dark" -->
-
-## Organization
-
-~~Projects~~       
-~~Notes and files~~      
-Data      
-
----
-
-# Never edit your raw data
-
----
-
-#### Storing raw data
-
-All data folders should have associated README: who, what, when, why, how?
-
-Google drive and Dropbox are dangerous: who did what when?
-
----
-
-#### Working with changing data
-
-If files are small enough: version control with github
-
-Otherwise, keep versions ... somehow?
-
-_(I haven't figured a great system for this one out yet)_
-
----
-
-<!-- .slide: data-background="#3F51B5" class="dark" -->
-
-## 3. Coding
-
-Makefiles     
-Tidy data     
-
-_Implementing these two concepts changed my life_
-
----
-
-#### General idea behind make
-
-To make a `target`, run the `rule` iff any of the `dependencies` are _newer_ than the target.
-
-```shell
-target: dependencies
-    rule
-```
-
----
-
-```shell
-make figure3.png
-```
-
-<img src="img/make_schematic.png" width="50%">
-
----
-
-```shell
-figure3.png: figure3.py disease_meta.txt core_bugs.txt
-    python figure3.py --in_meta disease_meta.txt ...
-
-disease_meta.txt: disease_meta.py qvalues.txt
-    python disease_meta.py --qvals qvalues.txt \
-        --out disease_meta.txt
-
-qvalues.txt: qvalues.py otu.clean meta.clean
-    python src/analysis/qvalues.py \
-        --otu otu.clean --meta meta.clean ...
-```
-
----
-
-<link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
-
-#### But why?
-
-zomg reviewer comments zomg
-
-<i class="em em-exploding_head"></i>
-
-#### Also:
-
-The code _is_ the documentation of what you did.
-
-_(Remember: make future you love current you._ :heart\_eyes\_cat: )
-
-Note: give example, latest paper wanted alpha diversity, which I had done but commented out. Now I know exactly what script to run and what inputs it requires.
-
----
-
-<link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
-
-#### Tidy data
-
-Literally life-changing.
-
-:panda_face: + <i class="em em-exploding_head"></i> = :nerd: :mortar_board:
-
----
-
-#### In tidy data, each unique observation gets its own line
-
-Tidyfied OTU table:
-
-```shell
-otu_id  sample_id   counts
-otu1    s1          0.0
-otu1    s2          16.0
-otu1    s3          0.0
-...     ...         ...
-otu2    s1          1.0
-otu2    s2          0.0
-otu2    s3          20.0
-...     ...         ...
-```
-
-Note: then you can add sample metadata, otu-metadata; easily group things together; easily make plots with libraries like seaborn
-
----
-
-#### But why?
-
-Query subsets of data
-
-Merge data
-
-Harness seaborn
-
-_Just trust me_
-_(and Nathaniel (and the #Rstats internet!))_
-
----
-
-<!-- .slide: data-background="#3F51B5" class="dark" -->
-
-## In conclusion...
-
-### Do everything such that future you falls _madly in love_ with present you
-
-Note: Think of your computational PhD as an act of radical self-love
-
----
-
-## Thanks for listening!
-
-<img src="img/soapbox.gif">
-
-Note: source = https://nightowlmom2.wordpress.com/category/soapbox/
-
----
-
-Claire Duvallet
-
-[cduvallet.github.io](cduvallet.github.io)
-
-[@cduvallet](https://twitter.com/cduvallet)
+- what do officials want to know? do they care about non-fatal OD's, or non-fatal OD's vs. narcan use? do they want to see info about each community, or do they just know already?
+- public health officials: need to show data (via tables) but also condense it (via viz). have to find a balance
