@@ -689,13 +689,16 @@ Real-life example: data visualization for opioid public health response.
 
 <!-- .slide: data-background="#3F51B5" class="dark" -->
 
-### Thanks!
+### Thanks! Questions?
 
 **Claire Duvallet**
 
+_Look at your data, focus your message._
+
 Slides: [cduvallet.github.io/mbiome-data-viz](https://cduvallet.github.io/mbiome-data-viz/)
 
-_Look at your data, focus your message._
+Code: [www.github.com/cduvallet/mbiome-data-viz](https://github.com/cduvallet/mbiome-data-viz)
+
 
 ---
 
