@@ -43,9 +43,9 @@ _almlab.mit.edu | www.biobot.io_
 
 <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
 
-Most important data viz tools:
+## Most important data viz tools:
 
-:eyes: and <i class="em em-brain"></i>
+## :eyes: and <i class="em em-brain"></i>
 
 ---
 
@@ -260,19 +260,23 @@ _Can the microbiome predict a certain metadata variable?_
 
 ## Don't forget to use your <i class="em em-brain"></i>!
 
-Data exploration can lead to new hypotheses!
+Data exploration can lead to new hypotheses
 
 ----
 
-Lung data: where to put your sample read cutoff?
+### Examples from lung, throat, and stomach microbiome dataset
 
-<img src="img/lung-reads-per-sample.png">
+#1. Lung data: where to put your sample read cutoff?
 
-NOte: Lung example (where are you gonna put your reads cutoff? can't just use same values as for poop)
+<img src="img/lung-reads-per-sample.png" width="60%">
+
+Duvallet et al, _bioRxiv_ (2019)
+
+Note: Lung example (where are you gonna put your reads cutoff? can't just use same values as for poop)
 
 ----
 
-Stomach vs. throat bacteria?
+#2. Attempt to define "stomach" bacteria failed to identify site-specific bacteria...
 
 <img src="img/gastric-otus.png" width="35%">
 
@@ -280,7 +284,7 @@ Note: clinical collaborator wanted to identify "stomach" bacteria but this was d
 
 ----
 
-Eventually led us to an interesting discovery...
+...which led us to find large overlap between lung, stomach, and throat microbiomes within people.
 
 <img src="img/figure.within_pt_vs_between_pt.png">
 
@@ -288,19 +292,21 @@ Note: we'll pick apart this figure later.
 
 ----
 
-Also: pay attention to what your data is trying to tell you
+### Pay attention to what your data is trying to tell you
 
 <img src="img/hsiao-pca.png">
 
-Hsiao et al, _Nature_ 2014. doi:10.1038/nature13738
-
-Note: Hsiao et al example (PCA plot showed me something funky)
+Hsiao et al, _Nature_ (2014). doi:10.1038/nature13738
 
 ----
+
+One OTU is driving the majority of the variance...
 
 <img src="img/hsiao-pca-components.png">
 
 ----
+
+...and it seems to bloom during diarrhea recovery.
 
 <img src="img/hsiao-pc1-otu.png">
 
@@ -318,7 +324,7 @@ Note: Hsiao et al example (PCA plot showed me something funky)
 
 ## Visualizing your data
 
-1. Basic plot types
+1. Basic plot types and principles
 2. Different viz for different purposes
 3. Microbiome visualization tools
 4. Examples from literature and Biobot
@@ -335,6 +341,14 @@ _What do you want to show?_
 
 ----
 
+<img src="img/data-to-viz.png">
+
+----
+
+<img src="img/data-viz-catalogue.png">
+
+----
+
 ### Kinds of data
 
 * Categorical (ordinal or not)
@@ -344,8 +358,6 @@ Note: continuous includes dates, percentages/proportions
 
 ----
 
-### Some things you can show
-
 **Distributions**: "what sorts of values does this one variable take?"     
 
 **Relationships**: "what happens to y when x changes?"
@@ -354,50 +366,41 @@ Note: continuous includes dates, percentages/proportions
 
 ----
 
-### Distributions
+#### Distributions
 
 _What sorts of values does this one variable take?_
 
-Histograms (usually)
+Histograms (usually); frequency bar plots (for categorical data)
 
-Frequency bar plots (for categorical data)
-
-<show an image of histogram on the left, frequency bar plot on the right>
+<img src="img/distributions.png">
 
 Note: distributions are good for showing relative abundances of single OTUs, alpha diversity
 
 ----
 
-### Relationship between two variables
+#### Relationship between two variables
 
 _What happens to y when x changes?_
 
-Scatter plot (almost always)   
+Scatter plot (almost always), boxplot (if one variable is categorical)    
 
-Boxplot (if one variable is categorical)    
-
-<img src="img/alpha-diversity-correlations.png" width="50%">
+<img src="img/alpha-diversity-correlations.png" width="70%">
 
 ----
 
-### Relationship between more than two variables
+#### Relationship between more than two variables
 
-_What happens to y when x changes?_
+Scatter plot with additional encoding (color, shape), facets       
 
-Scatter plot with additional encoding (color, shape)      
-Facets (AKA small multiples)       
-
-<img src="img/figure5.reflux_correlations.png" width="50%">
+<img src="img/figure5.reflux_correlations.png" width="70%">
 
 ----
 
-### Paired data
+#### Paired data
 
 _What happens to the "same" y when x changes?_
 
-Scatter plot or slope graph       
-
-Boxplot of differences or MA-plot             
+Scatter plot or slope graph; boxplot of differences or MA-plot             
 
 <img src="img/paired-data.png" width="80%">
 
@@ -405,56 +408,58 @@ Note: Paired data is when the two measurements belong to the same thing. So, for
 
 ----
 
-### Comparisons
+#### Comparisons
 
 _Which one is bigger?_
 
 **Most comparisons**: boxplots and/or stripplots        
-**Single values**: bar plots      
-**Temporal**: line plots      
-**High-dimensional**: heatmaps      
-**Distributions**: ridge plots or violin plots      
+
+<img src="img/boxplot-stripplot-both.png" width="70%">
 
 Note: I think of relationship as "if x increases, what happens to y?" and comparisons as "which one is bigger?" -- but they're quite similar concepts so don't worry about the distinction too much. Bar plots: because they rely on the length of the bars to encode data, you must start the bars at zero.
 
 ----
 
-Examples of each type:
+#### Other comparisons
 
-boxplot/stripplot: show all three, alpha div vs. obesity
-
-single values: just for giggles, show my sample size comparison
-
-temporal:
+**Single values**: bar plots      
+**Temporal**: line plots      
+**High-dimensional**: heatmaps      
+**Distributions**: ridge plots or violin plots      
 
 ----
 
-### Compositions
+#### Compositions
 
 _What's this made up of?_
 
-Stacked bar plot
-Pie chart (but only if you are showing few things and you're _really_ sure about it)
+Stacked bar plot; pie chart
 
----
+<img src="img/stacked-barplot.png">
+
+Note: pie chart only if you are showing few things and you're _really_ sure about it
+
+----
 
 ### Basic principles for data visualization
 
+Note: there's only really two.
+
 ----
 
-# Show the data!
+## Show the data!
 
-<img src="img/ancombes-quartet.gif">
+<img src="img/ancombes-quartet.gif" width="45%">
 
 https://www.autodeskresearch.com/publications/samestats
 
-Note: there's really only one basic principle. For pretty visualizations, this can be relaxed a little bit -- but you still always need to make sure your data is reliably represented and adds something to the viz.
+Note: For pretty visualizations, this can be relaxed a little bit -- but you still always need to make sure your data is reliably represented and adds something to the viz.
 
 ----
 
-# Remember your audience
+## Think of your audience.
 
-# Communicate "what's the point"
+## Focus on "what's the point?"
 
 ----
 
@@ -485,61 +490,96 @@ Note: these are also things you tweak to change your message.
 
 ----
 
+Duvallet et al. "Meta-analysis of gut microbiome studies identifies disease-specific and shared responses." _Nature Communications_ 2017.
+
 Heatmaps sorted by phylogeny provide broad overview and reveal few patterns.
-
-<img src="img/overall_heatmap.png">
-
-Duvallet et al, _Nature Communications_ 2017
-
-----
 
 Heatmaps sorted by direction of effect reveal strong disease-specific patterns.
 
-<img src="img/some-disease-heatmaps.png">
+----
+
+<img src="img/overall-heatmap.png" width="55%">
 
 ----
 
-### Stacked bar plots vs. line plots vs. heatmap: what does each one highlight?
-
-24-hour sampling of residential sewage.
+<img src="img/heatmaps-paper.png" width="55%">
 
 ----
 
-<img src="img/fig3 (from downloads folder)">
+### You can show the same data multiple ways to make your points
 
 ----
 
-<img src="img/fig4">
+<img src="img/heatmaps-paper.png" width="55%">
 
 ----
 
-<img src="img/fig5">
+<img src="img/direction-of-shift.png" width="30%">
 
 ----
 
-### Similar data, different conclusions
+### You can also modulate how much of the data you show
 
-Both figures enable comparison of JSD between on and off PPI patients, but one explicitly highlights it.
+<img src="img/reviewer.ppi_vs_lung_gastric.png" width="40%">
 
-Note: I wanted to make the point that this data is "meh" so I showed the correlation plot. The boxplot condenses it
-
-----
-
-<img src="img/reflux-correlation-by-ppi.png">
+Note: even though you could get the boxplot out of the reflux figure, it's nicer to have it directly shown.
 
 ----
 
-<img src="img/jsd-by-ppi.png">
+<img src="img/reviewer.reflux_correlations_ppi_status.png" width="75%">
 
 ----
 
-## Different viz for different audiences
+### Different plot types highlight different takeaways
 
-- my meta-analysis in the paper, in a semi-technical presentation, and in a non-technical presentation
+Matus et al. "24-hour multi-omics analysis of residential sewage reflects human activity and informs public health." _In preparation_.
 
-- show my bar chart (basically go through my whole paper and show how i give the talk for it. maybe pull other stuff from my defense too)
+----
 
-- link to comm lab article
+<img src="img/matus-bar-plot.png" width="43%"> <img src="img/matus-line-plot.png" width="45%">
+
+----
+
+<img src="img/matus-heatmap.png" width="50%">
+
+----
+
+## Different audiences need different visualizations
+
+----
+
+The figure in the paper...
+
+<img src="img/heatmaps-paper.png" width="55%">
+
+----
+
+in my defense...
+
+<img src="img/heatmaps-defense.png">
+
+----
+
+...and in a public outreach talk.
+
+<img src="img/heatmaps-soe-talk.png">
+
+----
+
+### Sometimes words are worth a thousand figures
+
+<img src="img/figure.within_pt_vs_between_pt.png">
+
+----
+
+<img src="img/within_pt_vs_between_pt_slide.png">
+
+
+----
+
+The BE Communication Lab has great resources to help you think through communicating science to different audiences.
+
+Read more: [mitcommlab.mit.edu/be/commkit/figure-design/](http://mitcommlab.mit.edu/be/commkit/figure-design/)
 
 ---
 
@@ -572,22 +612,99 @@ Note: I wanted to make the point that this data is "meh" so I showed the correla
 3. ~~Microbiome visualization tools~~
 4. Examples from literature and Biobot
 
+----
+
+- What's the main point of each figure?
+- How is that point communicated?
+- How could it be clearer?
+- How would you adapt this figure for this hackathon?
+
+----
+
+Smillie et al. "Strain tracking reveals the determinants of bacterial engraftment in the human gut following fecal microbiota transplantation." _Cell host & microbe_. 2018.
+
+----
+
+Simplify a complicated study design:
+
+<img src="img/smillie-study-design.png" width="50%">
+
+----
+
+<img src="img/smillie-ml-results.png">
+
+----
+
+<img src="img/smillie-strains.png">
+
+----
+
+Taur et al. "Reconstitution of the gut microbiota of antibiotic-treated patients by autologous fecal microbiota transplant." _Science Translational Medicine_. 2018.
+
+----
+
+<img src="img/auto-fmt.png">
+
+----
+
+<img src="img/auto-fmt-trajectory.png" width="47%%">
+
+----
+
+Rothschild, Weissbrod, Barken, et al. "Environment dominates over host genetics in shaping human gut microbiota." _Nature_ 2018.
+
+----
+
+<img src="img/ancestry-vs-microbiome.png" width="60%">
+
+"N.S." means "Not significant"
+
+Note: main point of the figure: no significant association between microbiome and ancestry, esp when compared to genetics. What works: explicitly writing the p-values on the figures; matching colors between a and b to show that it's the same people. What could be better: confusing that colors in c are the same as in a and b (this is showing bacteria). Zoom in on panel e: should be a scatter plot instead of categorical (if the data allows). Point of e is that there microbiome doesn't become more dissimilar with more genetic dissimilarity. In a talk, would want to put arrows describing axes.
+
+----
+
+### Biobot Analytics
+
+<img src="img/biobot-mission.png">
+
+Real-life example: data visualization for opioid public health response.
+
+----
+
+### Challenge: communicate complex data to city officials
+
+<img src="img/biobot-basic-data.png" width="80%">
+
+----
+
+### Overdose reversal drug vs. reported overdoses
+
+<img src="img/biobot-narcan.png" width="80%">
+
+----
+
+<img src="img/biobot-narcan-2.png">
+
 ---
 
-My heatmaps
+<!-- .slide: data-background="#3F51B5" class="dark" -->
+
+### Thanks!
+
+**Claire Duvallet**
+
+Slides: [cduvallet.github.io/mbiome-data-viz](https://cduvallet.github.io/mbiome-data-viz/)
+
+_Look at your data, focus your message._
 
 ---
 
-Then link to the part of figure 1 where I show the percent which are higher in cases vs. controls
+<!-- - what do officials want to know? do they care about non-fatal OD's, or non-fatal OD's vs. narcan use? do they want to see info about each community, or do they just know already?
+- public health officials: need to show data (via tables) but also condense it (via viz). have to find a balance -->
 
----
+----
 
-Smillie's donor/patient prediction tree
-
----
-
-Reconstitution of the gut microbiota of antibiotic-treated patients by autologous fecal microbiota transplant
-- fig 3 tsne plot
+<!-- - fig 3 tsne plot
     - point out the use of color to encode high vs. low diversity. what other ways could they have done this?
     - what about the color-coding, what do you think about that? how else could they have done it?
 - fig 3 (?) small multiples of trajectories
@@ -601,13 +718,6 @@ Reconstitution of the gut microbiota of antibiotic-treated patients by autologou
         - diversity: why did they categorize this? should be a gradient with the raw values
         - similarity: same, should not categorize this. adds noise and hides data.
         - color coding microbial species: i'm torn on this one. but problem is that there's no legend so not great.
-    - how else could they show this data? can we draw out a schematic of what it would look like?
+    - how else could they show this data? can we draw out a schematic of what it would look like? -->
 
-Or the one with different contributions to variance in mcirobiome (i think still eran segal, the one where environment plays (Environment dominates over host genetics in shaping human gut microbiota) - shows good and bad use of color [making it pretty is not always the right thing to do])
-
----
-
-Biobot's report
-
-- what do officials want to know? do they care about non-fatal OD's, or non-fatal OD's vs. narcan use? do they want to see info about each community, or do they just know already?
-- public health officials: need to show data (via tables) but also condense it (via viz). have to find a balance
+----
