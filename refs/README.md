@@ -39,15 +39,3 @@ Otherwise, there are many online resources. For example:
 * "[Fundamentals of Data Visualization](https://serialmentor.com/dataviz/)" by Claus O. Wilke, a free online book written in R    
 * [The Data Visualisation catalog](https://datavizcatalogue.com/), which can help you interactively figure out which type of viz you could use     
 * "[From data to viz](https://www.data-to-viz.com/)", a similar resource
-
-# Tools
-
-## Microbiome visualization tools
-
-links to microbiome tools
-
-## General visualization tools
-
-I want hue
-
-https://www.data-to-viz.com/
